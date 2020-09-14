@@ -1,0 +1,90 @@
+.tree-element{
+
+	position: relative;
+	display: block;
+	width: 100%;
+	min-width: 50px;
+	margin: 0 6px;
+	padding: 0 3px;
+	float: left;
+
+	&-name{
+		position: relative;
+		float: left;
+		min-width: 69px;
+		min-height: 14px;
+		padding: 2px 2px 2px 5px;
+		overflow: hidden;
+		font-weight: bold;
+		font-size: 14px;
+		letter-spacing: 1px;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		cursor: pointer;
+	}
+	&-add{
+		position: relative;
+		float: left;
+		width: 20px;
+		height: 20px;
+		background-color: blue;
+		margin: 2px;
+		color: white;
+		text-align: center;
+		cursor: pointer;
+	}
+	&-add:after{
+		content: '+'
+	}
+	&-remove{
+		position: relative;
+		float: left;
+		width: 20px;
+		height: 20px;
+		background-color: red;
+		margin: 2px;
+		color: white;
+		text-align: center;
+		cursor: pointer;
+	}
+	&-remove:after{
+		content: '-'
+	}
+	&-children{
+		position: relative;
+		margin-left: 15px;
+	}
+	&-children-closed{
+		display: none;
+	}
+	&-expand{
+		position: absolute;
+
+		float: left;
+		width: 9px;
+		height: 11px;
+		margin-top: 2px;
+		margin-left: -16px;
+
+		font-size: 15px;
+		text-align: center;
+
+		background: #fff;
+		border: 1px dotted #000;
+		cursor: pointer;
+		line-height: 0.6;
+	}
+	&-expand:after{
+		line-height: 0.6;
+		content: '-'
+	}
+	&-expand-closed:after{
+		line-height: 0.8;
+		content: '+'
+	}
+	&-expand-closed{
+		background: #c000ff;
+		color: white;
+	}
+
+}
