@@ -120,47 +120,47 @@ class Element{
 	getList( root, treeTable ){
 
 		fetch( "/assets/requests/list.json" )
-			.then( response => response.json() )
-			.then( data => {
+		.then( response => response.json() )
+		.then( data => {
 
-				let array = [];
+			let array = [];
 
-				for( let key in data ){
+			for( let key in data ){
 
-					const params = {
-						id: data[ key ].id,
-						name: data[ key ].title,
-						order: data[ key ].srt,
-						parent: data[ key ].parent_id
-					};
-					array.push( params );
+				const params = {
+					id: data[ key ].id,
+					name: data[ key ].title,
+					order: data[ key ].srt,
+					parent: data[ key ].parent_id
+				};
+				array.push( params );
 
-					if( !treeTable[ params.id ] )
-						treeTable[ params.id ] = new Element();
+				if( !treeTable[ params.id ] )
+					treeTable[ params.id ] = new Element();
 
-					treeTable[ params.id ].rename( params.name );
+				treeTable[ params.id ].rename( params.name );
 
+			};
+
+			array.sort(function( a, b ){
+				return a.order - b.order;
+			});
+
+			for( let key in array ){
+
+				const params = array[ key ];
+				let element = treeTable[ params.id ];
+				let parent = treeTable[ params.parent ];
+
+				if( parent ){
+					parent.add( element );
+				}else{
+					root.add( element );
 				};
 
-				array.sort(function( a, b ){
-					return a.order - b.order;
-				});
+			};
 
-				for( let key in array ){
-
-					const params = array[ key ];
-					let element = treeTable[ params.id ];
-					let parent = treeTable[ params.parent ];
-
-					if( parent ){
-						parent.add( element );
-					}else{
-						root.add( element );
-					};
-
-				};
-
-			}).catch( error => {
+		}).catch( error => {
 
 		});
 
